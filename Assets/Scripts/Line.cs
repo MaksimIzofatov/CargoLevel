@@ -43,10 +43,7 @@ public class Line : MonoBehaviour
     {
         var positions = new Vector3[_renderer.positionCount];
 
-        for (int i = 0; i < _renderer.positionCount; i++)
-        {
-            positions[i] = _renderer.GetPosition(i);
-        }
+        _renderer.GetPositions(positions);
 
         return positions;
     }
