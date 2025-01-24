@@ -13,7 +13,7 @@ public class Finish : MonoBehaviour
     {
         if (other.CompareTag("Rope"))
         {
-            _rope.StopAllCoroutines();
+            _rope.Stop();
             _box.DropDown(_endPoint.position);
         }
     }

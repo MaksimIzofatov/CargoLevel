@@ -10,6 +10,11 @@ public class Rope : MonoBehaviour
         StartCoroutine(MoveRope(path));
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator MoveRope(Vector3[] path)
     {
         foreach (var point in path)
