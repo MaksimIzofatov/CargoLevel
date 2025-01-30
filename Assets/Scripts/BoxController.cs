@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using Obi;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BoxController : MonoBehaviour
 {
+    public UnityEvent Lose;
+    public UnityEvent Win;
+    
     [SerializeField]
     private GameObject _rope;
     [SerializeField] 
@@ -25,11 +29,20 @@ public class BoxController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionEnter(Collision col)
     {
         // Отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
+
+        if (col.gameObject.name != "Finish")
+        {
+            Lose?.Invoke();
+        }
     }
+    
+    
+    
+    
 
     // TODO: Вызовите данный метод, когда ящик на веревке окажется над финишной точкой 
     // Vector3 position - точка, на которую должен опуститься ящик
@@ -65,5 +78,7 @@ public class BoxController : MonoBehaviour
         
         // Когда ящик занял нужную позицию - отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
+        Win?.Invoke();
+        
     }
 }
